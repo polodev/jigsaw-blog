@@ -3,4 +3,5 @@
 /build_production/
 /node_modules/
 /vendor/
+hello.txt
 .DS_Store

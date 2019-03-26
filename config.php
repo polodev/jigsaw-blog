@@ -1,22 +1,5 @@
 <?php
-function generate_file_maps () {
-    $post_source_path = __dir__ . "/source/_posts/";
-    $directory = new \RecursiveDirectoryIterator($post_source_path);
-    $iterator = new \RecursiveIteratorIterator($directory);
-    $path_array = [];
-    foreach ($iterator as $name => $info) {
-      if (preg_match('/(\.md)/i', $name)) {
-        $filename = $info->getFilename();
-        $filename = str_replace(".md","", $filename);
-        $fullpath =  $name;
-        $fullpath =  str_replace($post_source_path, '', $fullpath);
-        $fullpath = str_replace(".md","", $fullpath);
-        $fullpath = str_replace("/",".", $fullpath);
-        $path_array[$filename] = $fullpath;
-      }
-    }
-    return $path_array;
-}
+require(__dir__ . '/Helper.php');
 return [
     // 'baseUrl' => 'https://polodev.github.io/jigsaw-blog',
     'baseUrl' => '',
@@ -34,22 +17,36 @@ return [
         'posts' => [
             'author' => 'Author Name', // Default author, if not provided in a post
             'sort' => '-date',
-            'path' => 'blog/{slug}',
+            'path' => function ($page) {
+                return 'blog/' . Helper::slug($page->title);
+            } 
         ],
         // taxonomy
         'categories' => [
             'path' => '/blog/categories/{filename}',
             'posts' => function ($page, $allPosts) {
-                return $allPosts->filter(function ($post) use ($page) {
-                    return $post->categories ? in_array($page->getFilename(), $post->categories, true) : false;
+                $all_categories = $allPosts->filter(function ($post) use ($page) {
+                    if ($post->categories) {
+                    $categories = array_map(function ($category) {
+                        return Helper::slug($category);
+                    }, $post->categories);
+                      return in_array($page->getFilename(), $categories, true);
+                    }else {
+                        return false;
+                    }
                 });
+                return $all_categories;
             },
         ],
         // collection
         'series' => [
             'author' => 'Author Name', // Default author, if not provided in a post
             'sort' => '-date',
-            'path' => 'series/{series_name_single}/{slug}',
+            'path' => function ($page) {
+                $series_name_single = array_shift($page->series_names);
+                $slug = Helper::slug($page->title);
+                return  "series/{$series_name_single}/{$slug}";
+            },
         ],
         // taxonomy
         'series_tags' => [
@@ -99,11 +96,14 @@ return [
         return ends_with(trimPath($page->getPath()), trimPath($path));
     },
     'getFullFilePath' => function( $page ) {
-        $file_maps = generate_file_maps();
+        $file_maps = Helper::generate_file_maps();
         $file_name = $page->getFilename();
         if ( array_key_exists($file_name, $file_maps) ) {
             return $file_maps[$file_name];
         }
         return false;
+    },
+    str_slug => function ($page, $string) {
+        return Helper::slug($string);
     }
 ];

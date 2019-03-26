@@ -20,7 +20,7 @@
     @if ($page->categories)
         @foreach ($page->categories as $i => $category)
             <a
-                href="{{ '/blog/categories/' . $category }}"
+                href="{{ '/blog/categories/' . $page->str_slug( $category ) }}"
                 title="View posts in {{ $category }}"
                 class="inline-block bg-grey-light hover:bg-blue-lighter leading-loose tracking-wide text-grey-darkest uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
             >{{ $category }}</a>
