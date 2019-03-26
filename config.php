@@ -1,7 +1,7 @@
 <?php
 require(__dir__ . '/Helper.php');
 return [
-    'baseUrl' => '',
+    // 'baseUrl' => '',
     'baseUrl' => 'https://polodev.github.io/jigsaw-blog',
     'production' => false,
     'siteName' => 'Blog Starter Template',
