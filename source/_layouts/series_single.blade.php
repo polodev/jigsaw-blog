@@ -45,7 +45,6 @@
         $first_series_name = array_shift($value->series_names);
         return in_array($first_series_name, $page->series_names);
     });
-    $series_post = $series_post->sortBy('order');
      ?>
         <h2>All post under this series</h2>
         <ul>
