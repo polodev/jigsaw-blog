@@ -78,7 +78,7 @@ export default {
         results() {
             return this.query ? this.fuse.search(this.query) : [];
         },
-        baseUrl() {
+        main_url() {
             return document.body.dataset.base_url;
         }
     },
@@ -95,7 +95,8 @@ export default {
         },
     },
     created() {
-        axios(this.baseUrl . '/index.json').then(response => {
+        console.log(this.main_url + '/index.json');
+        axios(this.main_url + '/index.json').then(response => {
             this.fuse = new fuse(response.data, {
                 minMatchCharLength: 6,
                 keys: ['title', 'snippet', 'categories'],
