@@ -1,15 +1,15 @@
 <?php
 require(__dir__ . '/Helper.php');
 return [
-    'baseUrl' => 'https://polodev.github.io/jigsaw-blog',
     'baseUrl' => '',
+    'baseUrl' => 'https://polodev.github.io/jigsaw-blog',
     'production' => false,
     'siteName' => 'Blog Starter Template',
     'siteDescription' => 'Generate an elegant blog with Jigsaw',
     'siteAuthor' => 'Author Name',
     'build' => [
-        'destination' => 'docs',
         // 'destination' => 'build_local',
+        'destination' => 'docs',
     ],
 
     // collections
