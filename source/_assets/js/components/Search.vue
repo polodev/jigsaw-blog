@@ -107,7 +107,7 @@ export default {
 
 <style>
 input[name='search'] {
-    background-image: url('assets/img/magnifying-glass.svg');
+    background-image: url('/assets/img/magnifying-glass.svg');
     background-position: 0.8em;
     background-repeat: no-repeat;
     border-radius: 25px;
