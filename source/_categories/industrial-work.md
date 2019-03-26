@@ -1,6 +1,6 @@
 ---
 extends: _layouts.category
-title: industrial work
+title: Industrial Work
 description: Posts related to industrial work the Jigsaw blog starter template
 ---
 
