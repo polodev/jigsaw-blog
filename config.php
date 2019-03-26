@@ -18,7 +18,7 @@ function generate_file_maps () {
     return $path_array;
 }
 return [
-    'baseUrl' => 'https://polodev.github.io/jigsaw-blog/',
+    'baseUrl' => 'https://polodev.github.io/jigsaw-blog',
     'production' => false,
     'siteName' => 'Blog Starter Template',
     'siteDescription' => 'Generate an elegant blog with Jigsaw',
