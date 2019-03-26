@@ -10,7 +10,7 @@
 @section('body')
     <h1>_layouts/post</h1>
     @if ($page->cover_image)
-        <img src="{{ $page->cover_image }}" alt="{{ $page->title }} cover image" class="mb-2">
+        <img src="{{ $page->baseUrl }}{{ $page->cover_image }}" alt="{{ $page->title }} cover image" class="mb-2">
     @endif
 
     <h1 class="leading-none mb-2">{{ $page->title }}</h1>

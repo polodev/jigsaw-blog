@@ -18,7 +18,7 @@
         <span>Tags: </span>
         @foreach ($page->series_tags as $i => $tag)
             <a
-                href="{{ '/series/tags/' . $tag }}"
+                href="{{ $page->baseUrl }}{{ '/series/tags/' . $tag }}"
                 title="View posts in {{ $tag }}"
                 class="inline-block bg-grey-light hover:bg-blue-lighter leading-loose tracking-wide text-grey-darkest uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
             >{{ $tag }}</a>
@@ -30,7 +30,7 @@
         <span>Series: </span>
         @foreach ($page->series_names as $i => $series_name)
             <a
-                href="{{ '/series/' . $series_name }}"
+                href="{{ $page->baseUrl }}{{ '/series/' . $series_name }}"
                 title="View posts in {{ $series_name }}"
                 class="inline-block bg-grey-light hover:bg-blue-lighter leading-loose tracking-wide text-grey-darkest uppercase text-xs font-semibold rounded mr-4 px-3 pt-px"
             >{{ $series_name }}</a>

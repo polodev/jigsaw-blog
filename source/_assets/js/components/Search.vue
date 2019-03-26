@@ -60,7 +60,7 @@
             class="flex md:hidden bg-grey-lightest hover:bg-blue-lightest justify-center items-center border border-grey rounded-full focus:outline-none h-10 px-3"
             @click.prevent="showInput"
         >
-            <img src="/assets/img/magnifying-glass.svg" alt="search icon" class="h-4 w-4 max-w-none">
+            <img :src="baseUrl + '/assets/img/magnifying-glass.svg'" alt="search icon" class="h-4 w-4 max-w-none">
         </button>
     </div>
 </template>
@@ -78,6 +78,9 @@ export default {
         results() {
             return this.query ? this.fuse.search(this.query) : [];
         },
+        baseUrl() {
+            return document.body.dataset.base_url;
+        }
     },
     methods: {
         showInput() {
@@ -104,7 +107,7 @@ export default {
 
 <style>
 input[name='search'] {
-    background-image: url('/assets/img/magnifying-glass.svg');
+    background-image: url('assets/img/magnifying-glass.svg');
     background-position: 0.8em;
     background-repeat: no-repeat;
     border-radius: 25px;
