@@ -18,7 +18,7 @@ function generate_file_maps () {
     return $path_array;
 }
 return [
-    'baseUrl' => '',
+    'baseUrl' => 'http://github.com/polodev/',
     'production' => false,
     'siteName' => 'Blog Starter Template',
     'siteDescription' => 'Generate an elegant blog with Jigsaw',
@@ -31,6 +31,7 @@ return [
             'sort' => '-date',
             'path' => 'blog/{slug}',
         ],
+        // taxonomy
         'categories' => [
             'path' => '/blog/categories/{filename}',
             'posts' => function ($page, $allPosts) {
@@ -39,6 +40,33 @@ return [
                 });
             },
         ],
+        // collection
+        'series' => [
+            'author' => 'Author Name', // Default author, if not provided in a post
+            'sort' => '-date',
+            'path' => 'series/{series_name_single}/{slug}',
+        ],
+        // taxonomy
+        'series_tags' => [
+            'path' => '/series/tags/{filename}',
+            'posts' => function ($page, $allPosts) {
+                return $allPosts->filter(function ($post) use ($page) {
+                    return $post->series_tags ? in_array($page->getFilename(), $post->series_tags, true) : false;
+                });
+            },
+        ],
+        // taxonomy
+        'series_names' => [
+            'path' => '/series/{filename}',
+            'order' => 0,
+            'sort' => 'order',
+            'posts' => function ($page, $allPosts) {
+                return $allPosts->filter(function ($post) use ($page) {
+                    return $post->series_names ? in_array($page->getFilename(), $post->series_names, true) : false;
+                });
+            },
+        ],
+
     ],
 
     // helpers
